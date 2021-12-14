@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hangsound</title>
+</head>
+
+<body>
+    <button id="btnConnect">Connect</button>
+    <audio controls id="audio" src="fanfare.mp3"></audio>
+
+    <script>
+
+        function playAudio() {
+            document.getElementById("audio").pause();
+            document.getElementById("audio").currentTime = 0;
+            document.getElementById("audio").play();
+        }
+        
+        btnConnect.addEventListener("click", (e) => {
+            const sock = new WebSocket("ws://127.0.0.1:3012");
+
+            sock.addEventListener("open", e => {
+                btnConnect.innerText = "✅Connected";
+                btnConnect.disabled = true;
+            });
+
+            sock.addEventListener("message", e => {
+                if (e.data == "play_music") {
+                    playAudio();
+                }
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
