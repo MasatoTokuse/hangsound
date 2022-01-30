@@ -10,12 +10,12 @@ build:
 	export CARGO_TARGET_X86_64_UNKNOWN_LINUX_MUSL_LINKER='x86_64-unknown-linux-musl-gcc'
 	cargo build --target x86_64-unknown-linux-musl --release --bin httpserver
 	cargo build --target x86_64-unknown-linux-musl --release --bin wsserver
-zip: build
+zip: 
 	rm -rf hs.zip
 	rm -rf dst
 	mkdir dst
-	cp ./target/release/httpserver ./dst/
-	cp ./target/release/wsserver ./dst/
+	cp ./target/x86_64-unknown-linux-musl/release/httpserver ./dst/
+	cp ./target/x86_64-unknown-linux-musl/release/wsserver ./dst/
 	cp -r ./assets ./dst/assets
 	cp -r ./nginx.conf ./dst/
 	zip -r hs.zip ./dst	
