@@ -12,19 +12,22 @@
     <audio controls id="audio" src="fanfare.mp3"></audio>
 
     <script>
-
+        var sock;
         function playAudio() {
             document.getElementById("audio").pause();
             document.getElementById("audio").currentTime = 0;
             document.getElementById("audio").play();
         }
-        
+
         btnConnect.addEventListener("click", (e) => {
-            const sock = new WebSocket("ws://127.0.0.1:3012");
+            if (sock == null) {
+                sock = new WebSocket("ws://127.0.0.1:3012/socket/");
+            }
 
             sock.addEventListener("open", e => {
                 btnConnect.innerText = "✅Connected";
                 btnConnect.disabled = true;
+                setInterval(ping, 300000);
             });
 
             sock.addEventListener("message", e => {
@@ -33,6 +36,10 @@
                 }
             });
         });
+
+        function ping() {
+            sock.send("ping");
+        }
 
     </script>
 
