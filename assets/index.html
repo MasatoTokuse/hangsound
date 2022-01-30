@@ -27,7 +27,7 @@
             sock.addEventListener("open", e => {
                 btnConnect.innerText = "✅Connected";
                 btnConnect.disabled = true;
-                setInterval(ping, 300000);
+                setInterval(ping, 60000);
             });
 
             sock.addEventListener("message", e => {
