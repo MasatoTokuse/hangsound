@@ -5,12 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hangsound</title>
+    <link href="styles/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <button id="btnConnect">Connect</button>
-    <audio controls id="audio" src="fanfare.mp3"></audio>
-
+    <div class="container">
+        <div class="card bg-blur">
+            <h1>Connect to experience wizard sound service...</h1>
+            <button id="btnConnect" class="btn btn-gradient btn-glow">Connect</button>
+        </div>
+        <audio controls id="audio" src="fanfare.mp3" class="item-center"></audio>
+    </div>
     <script>
         var sock;
         function playAudio() {
